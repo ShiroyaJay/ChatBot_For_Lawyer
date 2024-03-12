@@ -1,0 +1,6 @@
+
+python -m venv myenv
+myenv\Scripts\activate
+curl -fsSL https://docs.grit.io/install | bash
+grit install
+grit apply openai

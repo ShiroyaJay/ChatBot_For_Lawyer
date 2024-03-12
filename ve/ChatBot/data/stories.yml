@@ -1,0 +1,144 @@
+version: "3.1"
+
+stories:
+
+- story: greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- story: good bye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+# - story: greet good bye
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: good_bye
+#   - action: utter_goodbye_direct
+
+- story: legal_advice_request
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: criminal_law_question
+    - action: action_fetch_law_info
+- story: legal_advice_request_1
+  steps:
+
+    - intent: criminal_law_question
+    - action: action_fetch_law_info
+    
+# - story: legal_advice_request_negative
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: criminal_law_question
+#     - action: action_fetch_law_info
+
+# - story: legal_advice_request
+#   steps:
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+    
+
+# - story: greet_clarify_legal_concept
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: legal_concept_question
+#     - action: utter_legal_advice
+#     - action: utter_anything_else
+
+# - story: clarify_legal_concept
+#   steps:
+
+#     - intent: legal_concept_question
+#     - action: utter_legal_advice
+#     - action: utter_anything_else
+  
+
+
+# - story: greet_unsatisfied_with_advice
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+#     - intent: deny
+#     - action: utter_apology
+
+# - story: unsatisfied_with_advice
+#   steps:
+
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+#     - intent: deny
+#     - action: utter_apology
+
+# - story: greet_additional_legal_question
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+#     - action: utter_anything_else
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+
+# - story: additional_legal_question
+#   steps:
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+#     - action: utter_anything_else
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+
+# - story: additional_legal_question_negative
+#   steps:
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+#     - action: utter_anything_else
+#     - intent: criminal_law_question
+#     - action: utter_legal_advice
+#     - intent: deny
+#     - action: utter_apology
+
+# - story: clarify_legal_concept_negative
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: legal_concept_question
+#     - action: utter_cannot_explain_legal_concept
+
+
+# - story: clarify_legal_concept_negative_ask_again
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: legal_concept_question
+#     - action: utter_cannot_explain_legal_concept
+#     - intent: legal_concept_question
+#     - action: utter_legal_advice
+
+
+
+
+# - story: greet_unrelated_questions
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: unrelated_question
+#     - action: utter_ask_related_question
+
+# - story: unrelated_questions
+#   steps:
+#     - intent: unrelated_question
+#     - action: utter_ask_related_question
