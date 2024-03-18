@@ -1,0 +1,362 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ChatBot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+  </body>
+</html> -->
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ChatBot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      .chat-container {
+        max-width: 600px;
+        margin: 50px auto;
+      }
+      .chat-box {
+        height: 300px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+      .message {
+        margin-bottom: 10px;
+      }
+      .user-message {
+        text-align: right;
+      }
+      .bot-message {
+        text-align: left;
+      }
+      .input-group {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container chat-container">
+      <div class="chat-box" id="chat-box"></div>
+      <div class="input-group">
+        <input type="text" class="form-control" id="user-input" placeholder="Type your message...">
+        <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      function sendMessage() {
+        var userInput = document.getElementById("user-input").value;
+        if (userInput.trim() !== "") {
+          addUserMessage(userInput);
+          // Call your backend API to process the user's message and get the response
+          // Replace the below line with your actual API call
+          var botResponse = getBotResponse(userInput);
+          setTimeout(function() {
+            addBotMessage(botResponse);
+          }, 500);
+        }
+        document.getElementById("user-input").value = "";
+      }
+
+      function addUserMessage(message) {
+        var chatBox = document.getElementById("chat-box");
+        var userMessage = '<div class="message user-message"><p>' + message + '</p></div>';
+        chatBox.innerHTML += userMessage;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      function addBotMessage(message) {
+        var chatBox = document.getElementById("chat-box");
+        var botMessage = '<div class="message bot-message"><p>' + message + '</p></div>';
+        chatBox.innerHTML += botMessage;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      // Dummy function to mimic backend API call
+      function getBotResponse(userInput) {
+        // Replace this with your actual backend API call to get the bot response
+        // For testing, simply returning a hardcoded response
+        return "You said: '" + userInput + "'. This is a dummy response from the bot.";
+      }
+    </script>
+  </body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .chat-container {
+      max-width: 400px;
+      margin: 50px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+
+    .chat-header {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .chat-header h1 {
+      margin: 0;
+    }
+
+    .chat-box {
+      overflow-y: auto;
+      max-height: 300px;
+      padding: 10px;
+    }
+
+    .message-bot {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .message-user {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    .chat-input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .chat-input input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .chat-input button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .chat-input button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <h1>ChatGPT</h1>
+    </div>
+    <div class="chat-box" id="chat-box">
+      <div class="message-bot">
+        <p>Hello! How can I assist you today?</p>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type your message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      var userInput = document.getElementById("user-input").value;
+      if (userInput !== "") {
+        addUserMessage(userInput);
+        var formData = new FormData();
+        formData.append('message', userInput);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:5005/webhooks/rest/webhook', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            addBotMessage(response[0].text);
+          }
+        };
+        xhr.send(JSON.stringify({ message: userInput }));
+      }
+      document.getElementById("user-input").value = "";
+    }
+
+    function addUserMessage(message) {
+      var chatBox = document.getElementById("chat-box");
+      var userMessage = '<div class="message-user"><p>' + message + '</p></div>';
+      chatBox.innerHTML += userMessage;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function addBotMessage(message) {
+      var chatBox = document.getElementById("chat-box");
+      var botMessage = '<div class="message-bot"><p>' + message + '</p></div>';
+      chatBox.innerHTML += botMessage;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    
+  </script>
+</body>
+</html> -->
+
+<!-- 
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <style>
+
+        .chat-sign-button {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+
+        }
+
+    </style>
+
+  </head>
+  <body>
+    <div class="container">
+        <h1>Hello, world!</h1>
+        <button id="chat-widget-button" type="button" class="btn btn-primary rounded-circle position-fixed chat-sign-button" style="bottom: 20px; right: 20px;"></button>
+        
+
+        <div id="chat-widget" class="card position-fixed shadow d-none" style="bottom: 100px; right: -20px; width: 300px;">
+        <div class="card-header bg-primary text-white">
+            Chatbot
+            <button id="chat-widget-close-button" ty\e="button" class="btn-close float-end" aria-label="Close"></button>
+        </div>
+        <div class="card-body" id="chat-widget-messages"></div>
+        <div class="card-footer">
+            <input type="text" class="form-control" id="chat-widget-input" placeholder="Type your message...">
+        </div>
+        <div id="chat-widget" class="card position-fixed shadow d-none" style="bottom: 100px; right : 20px; width: 300px;">
+
+            <div class="card-header bg-primary text-white">ChatBot
+            <button id="chat-widget-close-button" type="button" class="btn-close float-end" aria-label="Close"></button>
+            </div>
+            <div class="card-body" id="chat-widget-messages">
+            </div>
+            <div class="card-footer">
+                <input type="text" class="form-control" id="chat-widget-input" placeholder="Type yout message...">
+            </div>
+        </div>
+
+    
+    
+    
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+
+        .chat-sign-button {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>I an your ChatBot for legal queries</h1>
+        <button id="chat-widget-button" type="button" class="btn btn-primary rounded-circle position-fixed chat-sign-button" style="bottom: 20px; right: 20px;"></button>
+        
+        <div id="chat-widget" class="card position-fixed shadow d-none" style="bottom: 100px; right: 20px; width: 300px;">
+            <div class="card-header bg-primary text-white">
+                Chatbot
+                <button id="chat-widget-close-button" type="button" class="btn-close float-end" aria-label="Close"></button>
+            </div>
+            <div class="card-body" id="chat-widget-messages"></div>
+            <div class="card-footer">
+                <input type="text" class="form-control" id="chat-widget-input" placeholder="Type your message...">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+        $("#chat-widget-button").on("click", function(){
+            $("#chat-widget").toggleClass("d-none");
+        });
+
+        $("#chat-widget-close-button").on("click", function(){
+            $("#chat-widget").addClass("d-none");
+        });
+
+        $("#chat-widget-input").keypress(function(event){
+            if(event.which === 13){
+                let userMessage = $("#chat-widget-input").val();
+                $("#chat-widget-input").val("");
+                $("#chat-widget-messages").append("<div><strong>You:</strong> " + userMessage + "</div>");
+                
+                $.ajax({
+                    type: "POST",
+                    url: "/webhook",
+                    contentType: "application/json",
+                    data: JSON.stringify({ message: userMessage }),
+                    success: function(data) {
+                        let botResponse = data.response;
+                        $("#chat-widget-messages").append("<div><strong>Bot:</strong> " + botResponse + "</div>");
+                    },
+                    error: function() {
+                        // Handle error
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
