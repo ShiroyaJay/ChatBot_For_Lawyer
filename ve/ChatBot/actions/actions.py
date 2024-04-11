@@ -168,10 +168,13 @@
 #         )
 #         return response.choices[0].text
 
+
+
+
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-import openai
+
 from openai import OpenAI
 
 
@@ -203,7 +206,7 @@ class ActionFetchLawInfo(Action):
 
         try:
             response = client.chat.completions.create(
-                model="gpt-3.5-turbo",  # Use the appropriate model name
+                model="gpt-3.5-turbo-0125",  # Use the appropriate model name
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": prompt}
@@ -213,3 +216,56 @@ class ActionFetchLawInfo(Action):
             return response.choices[0].message.content
         except Exception as e:
             return f"Error: {str(e)}"
+
+
+# from typing import Any, Text, Dict, List
+# from rasa_sdk import Action, Tracker
+# from rasa_sdk.executor import CollectingDispatcher
+# from llama_index import SimpleDirectoryReader
+
+
+# from openai import OpenAI
+# from llama_index import SimpleDirectoryReader, LLMPredictor, GPTSimpleVectorIndex, PromptHelper
+
+
+# class ActionFetchLawInfo(Action):
+#     def name(self) -> Text:
+#         return "action_fetch_law_info"
+
+#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         user_message = tracker.latest_message.get('text', None)
+#         print("User Message:", user_message)
+
+#         if user_message:
+#             response = self.fetch_info_from_gpt3(user_message)
+
+#             dispatcher.utter_message(text=response)
+#         else:
+#             dispatcher.utter_message(text="I couldn't find a law topic in your message.")
+
+#         return []
+
+#     def fetch_info_from_gpt3(self, user_message: str) -> str:
+#         api_key="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"
+        
+
+#         # indian_law_url = "https://blog.ipleaders.in/criminal-law-in-india/"
+#         # prompt = f"Retrieve information about Indian law related to {user_message} from {indian_law_url}"
+#         prompt = f"Answer the following question only if it's related to Indian law: '{user_message}'. Otherwise, ask the user to provide a question about Indian law."
+
+#         try:
+#             llm_predictor = LLMPredictor(llm=OpenAI(api_key=api_key,temperature=0.1, model_name="gpt-3.5-turbo"))
+#             max_input_size = 4096
+#             num_output = 256
+#             max_chunk_overlap = 20
+
+#             prompt_helper = PromptHelper(max_input_size, num_output, max_chunk_overlap)
+#             documents = SimpleDirectoryReader('./data').load_data()
+#             custom_LLM_index = GPTSimpleVectorIndex(
+#                 documents, llm_predictor=llm_predictor, prompt_helper=prompt_helper
+#             )
+
+#             response = custom_LLM_index.query(prompt)
+#             return response
+#         except Exception as e:
+#             return f"Error: {str(e)}"
